@@ -1,5 +1,6 @@
 services:
     laravel.test:
+        hostname: auth.ates.test
         build:
             context: ./vendor/laravel/sail/runtimes/8.3
             dockerfile: Dockerfile
@@ -21,6 +22,7 @@ services:
             - '.:/var/www/html'
         networks:
             - sail
+            - ates
         depends_on:
             - mysql
             - redis
@@ -103,6 +105,8 @@ services:
 networks:
     sail:
         driver: bridge
+    ates:
+        external: true
 volumes:
     sail-mysql:
         driver: local
