@@ -52,7 +52,7 @@ return [
          * The model you want to use as a Role model needs to implement the
          * `Wnikk\LaravelAccessRules\Contracts\Owner` contract.
          */
-        'owner' => Wnikk\LaravelAccessRules\Models\Owner::class,
+        'owner' => \App\Models\Rbac\Owner::class,
 
         /*
          * When using the "hasPermission" trait from this package, we need to know which
