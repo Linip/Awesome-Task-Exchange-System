@@ -27,5 +27,6 @@ class CreateRolesSeeder extends Seeder
         $adminRole->newOwner('Role', 'worker', 'Worker role');
         $adminRole->addPermission('tasks.create');
         $adminRole->addPermission('tasks.view.its');
+        $adminRole->addPermission('tasks.complete.its');
     }
 }

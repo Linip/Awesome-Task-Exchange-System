@@ -27,5 +27,10 @@ class CreateRulesSeeder extends Seeder
             'tasks.view.its',
             'Каждый сотрудник должен иметь возможность видеть в отдельном месте список заассайненных на него задач',
         );
+
+        AccessRules::newRule(
+            'tasks.complete.its',
+            'Завершить задачу, поставленную на тебя',
+        );
     }
 }

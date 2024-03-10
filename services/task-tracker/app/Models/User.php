@@ -10,6 +10,14 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Wnikk\LaravelAccessRules\Traits\HasPermissions;
 
+/**
+ * @property int $id
+ * @property string $public_id
+ * @property string $name
+ * @property string $description
+ * @property $created_at
+ * @property $updated_at
+ */
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;

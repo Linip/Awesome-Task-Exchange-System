@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TaskController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
@@ -15,7 +16,7 @@ use Illuminate\Support\Str;
 |
 */
 
-Route::middleware(['web', 'auth:web'])->group(function (){
+Route::middleware(['web', 'auth:web'])->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
@@ -54,3 +55,20 @@ Route::name('login')->get('/redirect', static function (Request $request) {
 
     return redirect('http://auth.ates.test/oauth/authorize?' . $query);
 })->middleware('web');
+
+Route::middleware([
+    'web',
+    'auth:web'
+])->group(static function () {
+    Route::get('/users/{executorId}/tasks', [TaskController::class, 'index'])
+        ->can('tasks.view.its');
+
+    Route::post('/tasks', [TaskController::class, 'store'])
+        ->can('tasks.create');
+
+    Route::post("/tasks/{taskId}/complete", [TaskController::class, 'complete'])
+        ->can('tasks.complete.its');
+
+    Route::post("/tasks/shuffle", [TaskController::class, 'shuffle'])
+        ->can('tasks.shuffle');
+});
