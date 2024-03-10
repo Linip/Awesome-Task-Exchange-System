@@ -3,14 +3,29 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Wnikk\LaravelAccessRules\Traits\HasPermissions;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+    use HasPermissions;
+    use HasUuids;
+
+    /**
+     * @inheritDoc
+     * @return string[]
+     */
+    public function uniqueIds(): array
+    {
+        return [
+            'public_id',
+        ];
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -18,6 +33,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'public_id',
         'name',
         'email',
         'password',
