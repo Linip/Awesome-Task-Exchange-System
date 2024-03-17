@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\TaskAssigned;
 use App\Events\TaskCreated;
 use App\Events\UserCreated;
+use App\Listeners\StoreTaskAssigned;
 use App\Listeners\StoreNewTask;
 use App\Listeners\StoreNewUser;
 use Illuminate\Auth\Events\Registered;
@@ -27,6 +29,10 @@ class EventServiceProvider extends ServiceProvider
         TaskCreated::class => [
             StoreNewTask::class,
         ],
+        TaskAssigned::class => [
+            StoreTaskAssigned::class,
+        ],
+
     ];
 
     /**

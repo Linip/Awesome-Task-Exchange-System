@@ -7,7 +7,7 @@ use App\Events\PaymentTransactionApplied;
 use App\Events\TaskAssigned;
 use App\Events\TaskCreated;
 use App\Events\UserCreated;
-use App\Listeners\HandleTaskAssigned;
+use App\Listeners\StoreTaskAssigned;
 use App\Listeners\ProduceEnrollmentTransaction;
 use App\Listeners\ProducePaymentTransactioApplied;
 use App\Listeners\ProduceTaskCreated;
@@ -35,7 +35,7 @@ class EventServiceProvider extends ServiceProvider
             StoreNewTask::class,
         ],
         TaskAssigned::class => [
-            HandleTaskAssigned::class,
+            StoreTaskAssigned::class,
         ],
         EnrollmentTransactionApplied::class => [
             ProduceEnrollmentTransaction::class,

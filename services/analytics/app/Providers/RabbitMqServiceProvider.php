@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Events\TaskAssigned;
 use App\Events\TaskCreated;
 use App\Events\UserCreated;
 use App\External\EventLocator;
@@ -22,7 +23,7 @@ class RabbitMqServiceProvider extends ServiceProvider
             return new EventLocator([
                 'UserCreated' => UserCreated::class,
                 'TaskCreated' => TaskCreated::class,
-
+                'TaskAssigned' => TaskAssigned::class,
             ]);
         });
     }
@@ -51,6 +52,15 @@ class RabbitMqServiceProvider extends ServiceProvider
                 'accounting.tasks.created.stream',
                 'ates.topic',
                 'tasks.created.stream',
+            );
+        }
+
+        if (!$broker->isQueueExists('analytics.tasks.workflow')) {
+            $broker->declareQueue('analytics.tasks.workflow');
+            $broker->bindQueue(
+                'accounting.tasks.workflow',
+                'ates.topic',
+                'tasks.workflow',
             );
         }
     }
