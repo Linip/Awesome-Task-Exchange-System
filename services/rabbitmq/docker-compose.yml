@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3.10.7-management
+    container_name: ates-rabbitmq
+    hostname: rabbitmq.ates.test
+    restart: always
+    environment:
+      - RABBITMQ_DEFAULT_USER=rmuser
+      - RABBITMQ_DEFAULT_PASS=rmpassword
+    volumes:
+      - ./rabbitmq:/var/lib/rabbitmq
+    ports:
+      - 15672:15672
+    networks:
+      - ates
+
+networks:
+  ates:
+    external: true
