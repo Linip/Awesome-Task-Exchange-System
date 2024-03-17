@@ -70,6 +70,27 @@ return [
             'block_for' => null,
             'after_commit' => false,
         ],
+        'rabbitmq' => [
+            'driver' => 'rabbitmq',
+            'hosts' => [
+                [
+                    'host' => env('RABBITMQ_HOST'),
+                    'port' => env('RABBITMQ_PORT'),
+                    'user' => env('RABBITMQ_USER'),
+                    'password' => env('RABBITMQ_PASSWORD'),
+                    'vhost' => env('RABBITMQ_VHOST'),
+                ]
+            ],
+            'options' => [
+                'queue' => [
+                    'exchange' => 'ates.topic',
+                    'exchange_type' => 'topic',
+                    'exchange_routing_key' => '%s',
+                    'job' => \App\Queue\Jobs\RabbitMQJob::class,
+                ]
+            ],
+            'after_commit' => true,
+        ]
 
     ],
 
