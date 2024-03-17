@@ -2,8 +2,12 @@
 
 namespace App\Providers;
 
+use App\Events\EnrollmentTransactionApplied;
+use App\Events\TaskAssigned;
 use App\Events\TaskCreated;
 use App\Events\UserCreated;
+use App\Listeners\HandleTaskAssigned;
+use App\Listeners\ProduceEnrollmentTransaction;
 use App\Listeners\ProduceTaskCreated;
 use App\Listeners\StoreNewTask;
 use App\Listeners\StoreNewUser;
@@ -27,6 +31,12 @@ class EventServiceProvider extends ServiceProvider
         ],
         TaskCreated::class => [
             StoreNewTask::class,
+        ],
+        TaskAssigned::class => [
+            HandleTaskAssigned::class,
+        ],
+        EnrollmentTransactionApplied::class => [
+            ProduceEnrollmentTransaction::class,
         ]
     ];
 

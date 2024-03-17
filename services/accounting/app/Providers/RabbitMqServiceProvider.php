@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Events\TaskAssigned;
 use App\Events\TaskCreated;
 use App\Events\UserCreated;
 use App\External\EventLocator;
@@ -21,7 +22,8 @@ class RabbitMqServiceProvider extends ServiceProvider
         $this->app->bind(EventLocator::class, static function () {
             return new EventLocator([
                 'UserCreated' => UserCreated::class,
-                'TaskCreates' => TaskCreated::class,
+                'TaskCreated' => TaskCreated::class,
+                'TaskAssigned' => TaskAssigned::class,
             ]);
         });
     }
