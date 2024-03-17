@@ -11,6 +11,7 @@
         "laravel/passport": "^11.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
+        "vladimir-yuldashev/laravel-queue-rabbitmq": "^13.3",
         "wnikk/laravel-access-rules": "^2.0",
         "wnikk/laravel-access-ui": "^1.3"
     },

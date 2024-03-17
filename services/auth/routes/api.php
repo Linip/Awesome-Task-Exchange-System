@@ -17,3 +17,15 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+/**
+ * Маршрут создает тестовых пользователей со случайными данными
+ */
+Route::middleware('web')->get('/tests/createUser', function (Request $request) {
+    $newUser = \App\Models\User::factory()->makeOne();
+    $newUser->save();
+
+//    $roles = $user->roles()->pluck('original_id');
+//    $t = $user->getOwner()->inheritance()->dd();
+//    $t = $user->getOwner()->inheritance()->get()->toArray();
+});
