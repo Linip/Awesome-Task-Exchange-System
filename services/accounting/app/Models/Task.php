@@ -22,10 +22,6 @@ class Task extends Model
 {
     use HasUuids;
 
-    protected $dispatchesEvents = [
-        'created' => TaskCreated::class,
-    ];
-
     /**
      * @inheritDoc
      * @return string[]

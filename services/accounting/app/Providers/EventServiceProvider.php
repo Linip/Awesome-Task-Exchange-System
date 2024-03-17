@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Events\TaskCreated;
 use App\Events\UserCreated;
 use App\Listeners\ProduceTaskCreated;
+use App\Listeners\StoreNewTask;
 use App\Listeners\StoreNewUser;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -24,6 +25,9 @@ class EventServiceProvider extends ServiceProvider
         UserCreated::class => [
             StoreNewUser::class,
         ],
+        TaskCreated::class => [
+            StoreNewTask::class,
+        ]
     ];
 
     /**
