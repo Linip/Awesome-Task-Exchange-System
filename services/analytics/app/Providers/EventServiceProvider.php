@@ -2,11 +2,13 @@
 
 namespace App\Providers;
 
+use App\Events\EnrollmentTransactionApplied;
 use App\Events\TaskAssigned;
 use App\Events\TaskCompleted;
 use App\Events\TaskCreated;
 use App\Events\UserCreated;
 use App\Listeners\StoreTaskAssigned;
+use App\Listeners\StoreEnrollmentTransaction;
 use App\Listeners\StoreNewTask;
 use App\Listeners\StoreNewUser;
 use App\Listeners\StoreTaskCompleted;
@@ -37,6 +39,10 @@ class EventServiceProvider extends ServiceProvider
         TaskCompleted::class => [
             StoreTaskCompleted::class,
         ],
+        EnrollmentTransactionApplied::class => [
+            StoreEnrollmentTransaction::class,
+        ]
+
     ];
 
     /**

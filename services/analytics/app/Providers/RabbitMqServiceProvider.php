@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Events\EnrollmentTransactionApplied;
 use App\Events\TaskAssigned;
 use App\Events\TaskCompleted;
 use App\Events\TaskCreated;
@@ -26,6 +27,7 @@ class RabbitMqServiceProvider extends ServiceProvider
                 'TaskCreated' => TaskCreated::class,
                 'TaskAssigned' => TaskAssigned::class,
                 'TaskCompleted' => TaskCompleted::class,
+                'EnrollmentTransactionApplied' => EnrollmentTransactionApplied::class,
             ]);
         });
     }
@@ -63,6 +65,15 @@ class RabbitMqServiceProvider extends ServiceProvider
                 'accounting.tasks.workflow',
                 'ates.topic',
                 'tasks.workflow',
+            );
+        }
+
+        if (!$broker->isQueueExists('analytics.transactions.applied')) {
+            $broker->declareQueue('analytics.transactions.applied');
+            $broker->bindQueue(
+                'accounting.transactions.applied',
+                'ates.topic',
+                'transactions.applied',
             );
         }
     }
