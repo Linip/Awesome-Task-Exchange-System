@@ -5,11 +5,13 @@ namespace App\Models;
 use App\Events\TaskCreated;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * @property integer $id
  * @property string $public_id
  * @property integer $executor_id
+ * @property User $executor
  * @property string $name
  * @property string $description
  * @property string $status
@@ -55,5 +57,13 @@ class Task extends Model
         $this->status = Status::Completed->name;
 
         return $this;
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function executor(): HasOne
+    {
+        return $this->hasOne(User::class, 'id', 'executor_id');
     }
 }

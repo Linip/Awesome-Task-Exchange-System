@@ -42,7 +42,7 @@ class CreateTaskHandler
 
         Event::dispatch(new TaskAssigned(
             task: $task,
-            assignTo: $executor->public_id,
+            assignedTo: $executor->public_id,
         ));
 
         return $task->public_id;

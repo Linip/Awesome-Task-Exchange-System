@@ -21,20 +21,6 @@ class TaskController extends Controller
      */
     public function __construct(protected CommandBusInterface $commandBus)
     {
-        $this->commandBus->addHandler(
-            CreateTaskCommand::class,
-            CreateTaskHandler::class,
-        );
-
-        $this->commandBus->addHandler(
-            CompleteTaskCommand::class,
-            CompleteTaskHandler::class,
-        );
-
-        $this->commandBus->addHandler(
-            ShuffleTasksCommand::class,
-            ShuffleTasksHandler::class,
-        );
     }
 
     /**
