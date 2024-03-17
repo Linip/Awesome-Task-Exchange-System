@@ -3,11 +3,13 @@
 namespace App\Providers;
 
 use App\Events\EnrollmentTransactionApplied;
+use App\Events\PaymentTransactionApplied;
 use App\Events\TaskAssigned;
 use App\Events\TaskCreated;
 use App\Events\UserCreated;
 use App\Listeners\HandleTaskAssigned;
 use App\Listeners\ProduceEnrollmentTransaction;
+use App\Listeners\ProducePaymentTransactioApplied;
 use App\Listeners\ProduceTaskCreated;
 use App\Listeners\StoreNewTask;
 use App\Listeners\StoreNewUser;
@@ -37,6 +39,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         EnrollmentTransactionApplied::class => [
             ProduceEnrollmentTransaction::class,
+        ],
+        PaymentTransactionApplied::class => [
+            ProducePaymentTransactioApplied::class,
         ]
     ];
 

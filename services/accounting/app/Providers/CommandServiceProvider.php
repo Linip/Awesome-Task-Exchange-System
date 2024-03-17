@@ -6,6 +6,8 @@ use App\Commands\ApplyEnrollmentTransactionCommand;
 use App\Commands\ApplyEnrollmentTransactionHandler;
 use App\Commands\ApplyWithdrawalTransactionCommand;
 use App\Commands\ApplyWithdrawalTransactionHandler;
+use App\Commands\CloseBillingCycleCommand;
+use App\Commands\CloseBillingCycleHandler;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use Joselfonseca\LaravelTactician\Bus;
@@ -26,6 +28,7 @@ class CommandServiceProvider extends ServiceProvider
             $locator->addHandlers([
                 ApplyEnrollmentTransactionCommand::class => ApplyEnrollmentTransactionHandler::class,
                 ApplyWithdrawalTransactionCommand::class => ApplyWithdrawalTransactionHandler::class,
+                CloseBillingCycleCommand::class => CloseBillingCycleHandler::class,
             ]);
 
             return new Bus(
