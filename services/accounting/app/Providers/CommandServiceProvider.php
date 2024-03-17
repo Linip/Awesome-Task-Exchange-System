@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Commands\ApplyEnrollmentTransactionCommand;
 use App\Commands\ApplyEnrollmentTransactionHandler;
+use App\Commands\ApplyWithdrawalTransactionCommand;
+use App\Commands\ApplyWithdrawalTransactionHandler;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use Joselfonseca\LaravelTactician\Bus;
@@ -23,6 +25,7 @@ class CommandServiceProvider extends ServiceProvider
             $locator = new LaravelLazyLocator();
             $locator->addHandlers([
                 ApplyEnrollmentTransactionCommand::class => ApplyEnrollmentTransactionHandler::class,
+                ApplyWithdrawalTransactionCommand::class => ApplyWithdrawalTransactionHandler::class,
             ]);
 
             return new Bus(
