@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Events\EnrollmentTransactionApplied;
+use App\Events\PaymentTransactionApplied;
 use App\Events\TaskAssigned;
 use App\Events\TaskCompleted;
 use App\Events\TaskCreated;
@@ -30,6 +31,7 @@ class RabbitMqServiceProvider extends ServiceProvider
                 'TaskCompleted' => TaskCompleted::class,
                 'EnrollmentTransactionApplied' => EnrollmentTransactionApplied::class,
                 'WithdrawalTransactionApplied' => WithdrawalTransactionApplied::class,
+                'PaymentTransactionApplied' => PaymentTransactionApplied::class,
             ]);
         });
     }
