@@ -7,6 +7,7 @@ use App\Events\TaskAssigned;
 use App\Events\TaskCompleted;
 use App\Events\TaskCreated;
 use App\Events\UserCreated;
+use App\Events\WithdrawalTransactionApplied;
 use App\Listeners\StoreTaskAssigned;
 use App\Listeners\StoreEnrollmentTransaction;
 use App\Listeners\StoreNewTask;
@@ -41,7 +42,10 @@ class EventServiceProvider extends ServiceProvider
         ],
         EnrollmentTransactionApplied::class => [
             StoreEnrollmentTransaction::class,
-        ]
+        ],
+        WithdrawalTransactionApplied::class => [
+            StoreEnrollmentTransaction::class,
+        ],
 
     ];
 

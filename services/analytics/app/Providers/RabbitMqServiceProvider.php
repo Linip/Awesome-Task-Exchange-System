@@ -7,6 +7,7 @@ use App\Events\TaskAssigned;
 use App\Events\TaskCompleted;
 use App\Events\TaskCreated;
 use App\Events\UserCreated;
+use App\Events\WithdrawalTransactionApplied;
 use App\External\EventLocator;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\ServiceProvider;
@@ -28,6 +29,7 @@ class RabbitMqServiceProvider extends ServiceProvider
                 'TaskAssigned' => TaskAssigned::class,
                 'TaskCompleted' => TaskCompleted::class,
                 'EnrollmentTransactionApplied' => EnrollmentTransactionApplied::class,
+                'WithdrawalTransactionApplied' => WithdrawalTransactionApplied::class,
             ]);
         });
     }
