@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Events\TaskAssigned;
+use App\Events\TaskCompleted;
 use App\Events\TaskCreated;
 use App\Events\UserCreated;
 use App\External\EventLocator;
@@ -24,6 +25,7 @@ class RabbitMqServiceProvider extends ServiceProvider
                 'UserCreated' => UserCreated::class,
                 'TaskCreated' => TaskCreated::class,
                 'TaskAssigned' => TaskAssigned::class,
+                'TaskCompleted' => TaskCompleted::class,
             ]);
         });
     }

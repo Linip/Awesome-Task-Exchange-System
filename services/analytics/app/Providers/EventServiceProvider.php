@@ -3,11 +3,13 @@
 namespace App\Providers;
 
 use App\Events\TaskAssigned;
+use App\Events\TaskCompleted;
 use App\Events\TaskCreated;
 use App\Events\UserCreated;
 use App\Listeners\StoreTaskAssigned;
 use App\Listeners\StoreNewTask;
 use App\Listeners\StoreNewUser;
+use App\Listeners\StoreTaskCompleted;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -32,7 +34,9 @@ class EventServiceProvider extends ServiceProvider
         TaskAssigned::class => [
             StoreTaskAssigned::class,
         ],
-
+        TaskCompleted::class => [
+            StoreTaskCompleted::class,
+        ],
     ];
 
     /**
