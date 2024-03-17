@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Events\TaskCreated;
 use App\Events\UserCreated;
 use App\External\EventLocator;
 use Illuminate\Support\Facades\Queue;
@@ -20,6 +21,7 @@ class RabbitMqServiceProvider extends ServiceProvider
         $this->app->bind(EventLocator::class, static function () {
             return new EventLocator([
                 'UserCreated' => UserCreated::class,
+                'TaskCreated' => TaskCreated::class,
 
             ]);
         });
@@ -40,6 +42,15 @@ class RabbitMqServiceProvider extends ServiceProvider
                 'accounting.users.created.stream',
                 'ates.topic',
                 'users.created.stream',
+            );
+        }
+
+        if (!$broker->isQueueExists('analytics.tasks.created.stream')) {
+            $broker->declareQueue('analytics.tasks.created.stream');
+            $broker->bindQueue(
+                'accounting.tasks.created.stream',
+                'ates.topic',
+                'tasks.created.stream',
             );
         }
     }
