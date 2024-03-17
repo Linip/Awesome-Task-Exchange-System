@@ -47,5 +47,23 @@ class RabbitMqServiceProvider extends ServiceProvider
                 'users.created.stream',
             );
         }
+
+        if (!$broker->isQueueExists('accounting.tasks.created.stream')) {
+            $broker->declareQueue('accounting.tasks.created.stream');
+            $broker->bindQueue(
+                'accounting.tasks.created.stream',
+                'ates.topic',
+                'tasks.created.stream',
+            );
+        }
+
+        if (!$broker->isQueueExists('accounting.tasks.workflow')) {
+            $broker->declareQueue('accounting.tasks.workflow');
+            $broker->bindQueue(
+                'accounting.tasks.workflow',
+                'ates.topic',
+                'tasks.workflow',
+            );
+        }
     }
 }
